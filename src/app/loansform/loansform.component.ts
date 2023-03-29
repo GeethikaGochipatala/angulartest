@@ -53,7 +53,7 @@ export class LoansformComponent {
       "description": this.description,
     };
 
-    this.http.patch("http://localhost:8000/loans/update" + "/" + this.currentloansID, bodyData).subscribe((resultData: any) => {
+    this.http.put("http://localhost:8000/loans/update" + "/" + this.currentloansID, bodyData).subscribe((resultData: any) => {
       console.log(resultData);
       alert("loan Updated")
       this.getAllloans();

@@ -1,0 +1,110 @@
+<div class="hero-image"> </div>
+<div class="container py-5  px-md-6  ">
+  <div class="row justify-content-center ">
+    <div class="card align-items-center" *ngIf=loantable>
+      <div class="card-body">
+        <div style="float: right"><a class="pi pi-user-plus" routerLink="/home" style="text-decoration:none;"> Create
+            Loan</a> </div>
+        <form>
+          <div class="form-group form-inline">
+            <h4>loans</h4>
+            <hr>
+            
+            <table class="table  ag-theme-balham " style="color: white;">
+              <!-- <p-table [paginator]="true"> -->
+              <thead>
+                <tr>
+                  <th scope="col">LoanId</th>
+                  <th scope="col" sortable="LoanType">LoanType</th>
+                  <th scope="col">BorrowerName</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col"> Description </th>
+                  <th scope="col"> RequestedDate </th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let loansItem of loansArray;let i = index">
+                  <td>{{i+01}}</td>
+                  <td>{{loansItem.loantype|titlecase}}</td>
+                  <td>{{ loansItem.borrowername|titlecase }}</td>
+                  <td>{{loansItem.amount| currency:'INR' }}</td>
+                  <td>{{loansItem.description }}</td>
+                  <td>{{loansItem.date }}</td>
+                  <td><i class="pi pi-user-edit" style="color: green" (click)="setUpdate(loansItem)"></i>
+                  </td>
+                  <td> <i class="pi pi-trash" style="color:red" (click)="setDelete(loansItem)"></i></td>
+                </tr>
+              </tbody>
+              <!-- </p-table> -->
+            </table>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+
+
+
+
+
+<div class="container py-5" *ngIf="editloan">
+  <div class="row ">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-lg-5 mb-5 mb-lg-0">
+        <div class="col-lg-6 mb-5 mb-lg-6 position-relative">
+          <div class="card" style=" width:400px;margin-top:500px; margin-left: 100px;">
+            <div class="card-body">
+              <form>
+                <div class="text-center">
+                  <br>
+                  <h4>Loans Form</h4>
+                  <hr />
+                </div>
+                <div class="form-outline  mb-2 col-md-12  ">
+                  <label class="form-label " for="form2Example11" style="color: white;">Loan Type</label>
+                  <input type="text" [(ngModel)]="loantype" [ngModelOptions]="{standalone: true}" class="form-control"
+                    id="loantype" placeholder="Loan Type">
+                </div>
+                <div class="form-outline  mb-2 col-md-12 ">
+                  <label class="form-label" for="form2Example11" style="color: white;">Borrower Name</label>
+                  <input type="text" [(ngModel)]="borrowername" [ngModelOptions]="{standalone: true}"
+                    class="form-control" id="borrowername" placeholder="Borrower Name">
+                </div>
+                <div class="row">
+                  <div class=" form-outline col-md-6 mb-4">
+                    <div class="form-outline  ">
+                      <label class="form-label" for="form2Example11" style="color: white;">Amount</label>
+                      <input type="text" [(ngModel)]="amount" [ngModelOptions]="{standalone: true}" class="form-control"
+                        id="amount" placeholder="Amount">
+                    </div>
+                  </div>
+                  <div class=" form-outline col-md-6 mb-4">
+                    <div class="form-outline   ">
+                      <label class="form-label" for="form2Example11" style="color: white;">Requested Date</label>
+                      <input type="text" [(ngModel)]="date" [ngModelOptions]="{standalone: true}" class="form-control"
+                        id="date" placeholder="Requested Date">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-outline  mb-2 col-md-12  ">
+                  <label class="form-label" for="form2Example11" sstyle="color: white;">Description</label>
+                  <input type="text" [(ngModel)]="description" [ngModelOptions]="{standalone: true}"
+                    class="form-control" id="description" placeholder="description">
+                </div>
+                <br>
+                <div><i type="submit" class="pi pi-arrow-left" (click)="Back()" style="margin-left: 10px;"></i>
+                  <div style="float: right"><a class="pi pi-user" (click)="Update()" style="text-decoration:none;">
+                      Update User</a> </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

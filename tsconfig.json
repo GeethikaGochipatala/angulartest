@@ -10,7 +10,17 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    
+      "strictPropertyInitialization": false,
+      
     "sourceMap": true,
+
+    "paths": {
+      "my-logger": [
+        "dist/my-logger/my-logger",
+        "dist/my-logger"
+      ]
+    },
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,

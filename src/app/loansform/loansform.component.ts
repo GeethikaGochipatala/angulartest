@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-loansform',
+  templateUrl: './loansform.component.html',
+  styleUrls: ['./loansform.component.scss']
 })
-export class HomeComponent {
-
+export class LoansformComponent {
   loansArray: any[] = [];
   currentloansID = "";
   loantype: string = "";
@@ -16,33 +15,35 @@ export class HomeComponent {
   amount: number[] = [];
   date: number[] = [];
   description: string = "";
-  cities: any[];
-
+  loantable: any;
+  editloan: any;
   constructor(private http: HttpClient, private router: Router) {
-
+    this.loantable = true;
     this.getAllloans();
   }
   getAllloans() {
-
     this.http.get("http://localhost:8000/loans/getAll")
       .subscribe((resultData: any) => {
-
         console.log(resultData);
         this.loansArray = resultData.data;
       });
+  }
 
+  Back() {
+    this.loantable = true;
   }
 
   setUpdate(data: any) {
+    this.editloan = true;
+    this.loantable = false;
     this.loantype = data.loantype;
     this.borrowername = data.borrowername;
     this.amount = data.amount;
-    this.date = data.date;
     this.description = data.description;
+    this.date = data.date;
     this.currentloansID = data._id;
   }
-
-  UpdateRecords() {
+  Update() {
     let bodyData = {
 
       "loantype": this.loantype,
@@ -58,52 +59,15 @@ export class HomeComponent {
       this.getAllloans();
 
     });
-  }
+    this.editloan = false;
+    this.loantable = true;
 
+  }
   setDelete(data: any) {
     this.http.delete("http://localhost:8000/loans/delete" + "/" + data._id).subscribe((resultData: any) => {
       console.log(resultData);
       alert("loan Deleted")
       this.getAllloans();
-
     });
   }
-  Back() {
-    this.router.navigateByUrl("loansform")
-  }
-
-  save() {
-    if (this.currentloansID == '') {
-      this.loansform();
-    }
-    // else
-    // {
-    //  this.UpdateRecords();
-    // }       
-
-  }
-
-  loansform() {
-
-    let bodyData = {
-
-      "loantype": this.loantype,
-      "borrowername": this.borrowername,
-      "amount": this.amount,
-      "date": this.date,
-      "description": this.description,
-    };
-    this.http.post("http://localhost:8000/loans/create", bodyData).subscribe((resultData: any) => {
-      console.log(resultData);
-      alert("loan Successfully Created")
-      this.loantype = '';
-      this.borrowername = '';
-      this.amount = [];
-      this.date = [];
-      this.description = '';
-      this.router.navigateByUrl("loansform")
-
-    });
-  }
-
 }

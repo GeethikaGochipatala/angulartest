@@ -8,38 +8,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
-  Email: string = '';
-  Password: string = '';
-  isLogin: boolean = true;
-  erroMessage: string = "";
-
-  constructor(private router: Router,private http: HttpClient) {}
-
+  email: string = '';
+  password: string = '';
+  islogin: boolean = true;
+  erromessage: string = "";
+  constructor(private router: Router, private http: HttpClient) { }
   login() {
-    console.log(this.Email);
-    console.log(this.Password);
-
+    console.log(this.email);
+    console.log(this.password);
     let bodyData = {
-      Email: this.Email,
-      Password: this.Password,
+      email: this.email,
+      password: this.password,
     };
-
-        this.http.post("http://localhost:8000/user/login", bodyData).subscribe(  (resultData: any) => 
-        {
-          console.log(resultData);
-
-        if (resultData.status) 
-        {
-      
-          this.router.navigate(["home"]);
-        } 
-        else
-         {
-          alert("Incorrect Email or Password");
-          console.log("Eror login");
-        }
-      });
-    }
+    this.http.post("http://localhost:8000/user/login", bodyData).subscribe((resultData: any) => {
+      console.log(resultData);
+      if (resultData.status) {
+        this.router.navigate(['home']);
+      }
+      else {
+        alert("Incorrect Email or Password");
+        console.log("Eror login");
+      }
+    });
+  }
 
 }

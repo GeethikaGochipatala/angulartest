@@ -1,79 +1,74 @@
-<div class="container mt-4">
-<div class="card">
-<h1>loans Form</h1>
-
-<form>
-
-<div class="form-group">
-<label>LoanType</label>
-<input type="text" class="form-control" [(ngModel)]="LoanType"[ngModelOptions]="{standalone: true}" id="LoanType"placeholder="LoanType">
-</div>
-
-
-<div class="form-group">
-<label>BorrowerName</label>
-<input type="text" class="form-control" [(ngModel)]="BorrowerName" [ngModelOptions]="{standalone:true}" id="BorrowerName"placeholder="BorrowerName">
-</div>
-
-
-<div class="form-group">
-<label> Amount</label>
-<input type="text" class="form-control" [(ngModel)]=" Amount" [ngModelOptions]="{standalone:true}" id=" Amount"placeholder=" Amount">
-</div>
-<br>
-
-<button type="submit" (click)="save()" class="btn btn-primary">Submit</button>
-  
-</form>
-</div>
-</div>
-
-
-<div class="container mt-4" >
-<h1>loans Table</h1>
-<table class="table">
-<thead>    
-         <tr>
-          <th scope="col">LoanNumber</th>
-          <th scope="col">LoanType</th>
-          <th scope="col">BorrowerName</th> 
-         <th scope="col"> Amount </th>
-        </tr>
-</thead>
-       <tbody>
-            
-          <tr *ngFor="let loansItem of loansArray;let i = index">
-          <td>{{i+1}}</td>
-          <td>{{loansItem.LoanType }}</td>
-          <td>{{loansItem.BorrowerName }}</td>
-          <td>{{loansItem.Amount }}</td>
-          <td><button type="button" class="btn btn-success" (click)="setUpdate(loansItem)">Edit</button></td>
-          <td><button  type="button" class="btn btn-danger " (click)="setDelete(loansItem)">Delete</button>  </td>
-          </tr>   
-                 
-      </tbody>
-
-</table>
-     
-</div>  
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div class="bg_img">
+  <header>
+    <nav class="navbar navbar-expand-lg   ">
+      <div class="container-fluid">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" style="color: aliceblue;" aria-current="page" href="home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color: aliceblue;" href="loans">Loans</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color: aliceblue;" href="loansform">Loan Form</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color: aliceblue;" href="register"> Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <div class="container py-5 h-100" style="opacity: 100%;">
+    <div class="row justify-content-center align-items-center h-100" style="text-decoration-color: aliceblue;">
+      <div class="col-lg-5 mb-5 mb-lg-0" style="z-index: 10" style="text-decoration-color: aliceblue;">
+        <div class="col-lg-6 mb-5 mb-lg-6 position-relative" style="text-decoration-color: aliceblue;">
+          <div class="card shadow-2-strong card-loanform" style="text-decoration-color: aliceblue;">
+            <div class="card-body  px-4 py-5 px-md-6" style="text-decoration-color: aliceblue;">
+              <form>
+                <div class="text-center " style="text-decoration-color: aliceblue;">
+                  <br>
+                  <h4>Loans Form</h4>
+                  <hr />
+                </div>
+                <div class="form-outline  mb-2 col-md-12">
+                  <label class="form-label " for="form2Example11" style=" color: aliceblue;">Loan Type</label>
+                  <input type="text" [(ngModel)]="loantype" [ngModelOptions]="{standalone: true}" class="form-control"
+                    id="loantype" placeholder="Loan Type">
+                </div>
+                <div class="form-outline  mb-2 col-md-12 ">
+                  <label class="form-label" for="form2Example11" style=" color: aliceblue;">Borrower Name</label>
+                  <input type="text" [(ngModel)]="borrowername" [ngModelOptions]="{standalone: true}"
+                    class="form-control" id="borrowername" placeholder="Borrower Name">
+                </div>
+                <div class="row">
+                  <div class=" form-outline col-md-6 mb-4">
+                    <div class="form-outline  ">
+                      <label class="form-label" for="form2Example11" style=" color: aliceblue;">Amount</label>
+                      <input type="text" [(ngModel)]="amount" [ngModelOptions]="{standalone: true}" class="form-control"
+                        id="amount" placeholder="Amount">
+                    </div>
+                  </div>
+                  <div class=" form-outline col-md-6 mb-4">
+                    <div class="form-outline   ">
+                      <label class="form-label" for="form2Example11" style=" color: aliceblue;">Requested Date</label>
+                      <input type="text" [(ngModel)]="date" [ngModelOptions]="{standalone: true}" class="form-control"
+                        id="date" placeholder="Requested Date">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-outline  mb-2 col-md-12   ">
+                  <label class="form-label" for="form2Example11" style=" color: aliceblue;">description</label>
+                  <input type="text" [(ngModel)]="description" [ngModelOptions]="{standalone: true}"
+                    class="form-control" id="description" placeholder="description">
+                </div>
+                <br>
+                <div><i type="submit" class="pi pi-arrow-left" (click)="Back()" style="margin-left: 10px;"></i>
+                  <button type="submit" class="btn btn-dark" (click)="save()"
+                    style="margin-left: 250px; color: white">Create</button>
+                </div>
+              </form>
+            </div>
 
 
-
-
-
-<router-outlet></router-outlet> 
+            <router-outlet></router-outlet>
